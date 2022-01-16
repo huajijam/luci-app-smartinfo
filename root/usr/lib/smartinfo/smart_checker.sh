@@ -13,7 +13,9 @@
 
 config_load "smartinfo"
 
-local enable time time_step time_unit log_enabled log_path touch_enable touch_path
+init() {
+  local enable time time_step time_unit log_enabled log_path touch_enable touch_path
+}
 
 config_get  enabled  main enabled
 config_get  time_step  main  time_step
@@ -23,15 +25,15 @@ config_get  log_path  main  log_path
 config_get  touch_enabled main  touch_enabled
 config_get  touch_path  main  touch_path
 
-echo "NVACG SMART CHECK SCRIPT"
+echo "SMART CHECK SCRIPT"
 echo "Paramter ==================="
 echo "Enabled:  $enabled"
 echo "Time Step:  $time_step"
 echo "Time Unit:  $time_unit"
 echo "Log:  $log_enabled"
-echo "Path: $log_path"
-echo "Touch:  $touch_enabled"
-echo "Path: $touch_path"
+echo "Log ath: $log_path"
+echo "Warn:  $touch_enabled"
+echo "Warn Path: $touch_path"
 
 if [ $enabled -ne 1 ]; then
   exit 0
@@ -49,7 +51,7 @@ case $time_unit in
   "day")
     let time=time_step*86400
   ;;
-   "week")
+  "week")
     let time=time_step*604800
   ;;
   *)
