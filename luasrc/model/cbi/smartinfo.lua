@@ -27,8 +27,9 @@ m:section(SimpleSection).template="smartinfo/smart_status"
 s:tab("general",translate("Global"))
 --s:tab("detail",translate("Detail"))
 
-enable=s:taboption("general",Flag,"enabled",translate("Enabled"))
+enable=s:taboption("general", Flag, "enabled", translate("Enabled"))
 enable.rmempty=false
+enable.default = 0
 function enable.cfgvalue(self,section)
 	return luci.sys.init.enabled("smartinfo") and self.enabled or self.disabled
 end
